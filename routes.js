@@ -10,12 +10,22 @@ route.get("/" , (req,res)=>{
 
 route.post("/createnote" ,async (req,res)=>{
 
-    let {title , body} = req.body;
+    let {title , body ,tag} = req.body;
 
-    const create_note = await pool.query("INSERT INTO notes(title , body) VALUES ($1 , $2)" , [title , body]);
+    if(!(tag==="hard"||tag==="medium"||tag==="easy")){
+        return res.status(400).json(
+            {
+                message:"Invalid Tag!"
+            }
+        )
+    }
 
-
-
+    const create_note = await pool.query("INSERT INTO notes(title , body , tag) VALUES ($1 , $2 , $3)" , [title , body , tag]);
+    return res.status(201).json(
+        {
+            message:"Note created!"
+        }
+    )
 })
 
 
