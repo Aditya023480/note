@@ -8,13 +8,13 @@ route.get("/" , (req,res)=>{
     res.send("OK!");
 })
 
-route.post("/note" ,async (req,res)=>{
+route.post("/createnote" ,async (req,res)=>{
 
     let {title , body} = req.body;
 
     const create_note = await pool.query("INSERT INTO notes(title , body) VALUES ($1 , $2)" , [title , body]);
 
-    
+
 
 })
 
