@@ -1,5 +1,5 @@
 import express from "express";
-import route from "./routes.js";
+import route from "./modules/notes/notes.routes.js";
 
 
 
